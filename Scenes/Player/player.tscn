@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://7gv6q50fuutj"]
+
+[ext_resource type="Script" path="res://Scenes/Player/player.cs" id="1_8uqkp"]
+[ext_resource type="PackedScene" uid="uid://7y1jroki8kbu" path="res://Assets/eclectic_male_rigged_game'ready'.tscn" id="3_x3phq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
+radius = 0.160762
+height = 1.76332
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_8uqkp")
+
+[node name="pve_collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0861763)
+shape = SubResource("CapsuleShape3D_emkox")
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="playerCam" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.734151, -0.103372)
+fov = 100.441
+
+[node name="gunRay" type="RayCast3D" parent="Head/playerCam"]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 1.35982e-08, -0.00588065, 0.00674525)
+target_position = Vector3(60, 0, 0)
+
+[node name="mesh" type="Node3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.719864, -0.10095)
+
+[node name="eclectic_male_rigged_texturing_backuip" parent="Head/mesh" instance=ExtResource("3_x3phq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.392443, 0.0890787)

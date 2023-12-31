@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://7y1jroki8kbu"]
+
+[ext_resource type="PackedScene" uid="uid://cfrdrq5tgnevy" path="res://Assets/eclectic_male_rigged_texturing_backuip.glb" id="1_0ry1g"]
+
+[sub_resource type="Animation" id="Animation_nk8ar"]
+resource_name = "leg_walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jk4r5"]
+_data = {
+"leg_walk": SubResource("Animation_nk8ar")
+}
+
+[node name="eclectic_male_rigged_texturing_backuip" instance=ExtResource("1_0ry1g")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+transform = Transform3D(1, 0, -2.84217e-13, 0, 1, 0, 2.84217e-13, 0, 1, 0, 0, 0)
+
+[node name="eye_l_2" parent="Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, -8.51053e-09, 1.49012e-08, 1, -4.84139e-08, -2.37789e-08, 1.15219e-07, 1, -8.9407e-08, 2.86102e-06, -2.68966e-06)
+bone_idx = 8
+
+[node name="eye_r_2" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 1.39737e-08, -1.49012e-08, 1, -9.79188e-09, 9.73382e-09, 6.46545e-08, 1, -1.49012e-07, 2.86102e-06, -2.07871e-06)
+bone_idx = 10
+
+[node name="body" parent="Armature/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, -2.84217e-14, 0, 1, 0, 2.84217e-14, 0, 1, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_jk4r5")
+}

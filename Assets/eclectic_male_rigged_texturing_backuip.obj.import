@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://tlt8g7ugfihk"
+path="res://.godot/imported/eclectic_male_rigged_texturing_backuip.obj-4074fe30d8df1aa6ff5db26f36c87d25.mesh"
+
+[deps]
+
+files=["res://.godot/imported/eclectic_male_rigged_texturing_backuip.obj-4074fe30d8df1aa6ff5db26f36c87d25.mesh"]
+
+source_file="res://Assets/eclectic_male_rigged_texturing_backuip.obj"
+dest_files=["res://.godot/imported/eclectic_male_rigged_texturing_backuip.obj-4074fe30d8df1aa6ff5db26f36c87d25.mesh", "res://.godot/imported/eclectic_male_rigged_texturing_backuip.obj-4074fe30d8df1aa6ff5db26f36c87d25.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
