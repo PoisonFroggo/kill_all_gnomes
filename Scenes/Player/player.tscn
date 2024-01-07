@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=5 format=3 uid="uid://7gv6q50fuutj"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.cs" id="1_8uqkp"]
 [ext_resource type="PackedScene" uid="uid://7y1jroki8kbu" path="res://Assets/eclectic_male_rigged_game'ready'.tscn" id="3_x3phq"]
@@ -7,8 +7,14 @@
 radius = 0.160762
 height = 1.76332
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_dbouj"]
+size = Vector3(0.426695, 1.70339, 0.331874)
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CameraNode", "PlayerModel")]
 script = ExtResource("1_8uqkp")
+CameraNode = NodePath("Head/playerCam")
+PlayerModel = NodePath("Head/mesh/eclectic_male_rigged_texturing_backuip")
+RotationSpeed = 3.065
 
 [node name="pve_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0861763)
@@ -17,7 +23,7 @@ shape = SubResource("CapsuleShape3D_emkox")
 [node name="Head" type="Node3D" parent="."]
 
 [node name="playerCam" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.734151, -0.103372)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.734151, -0.0816544)
 fov = 100.441
 
 [node name="gunRay" type="RayCast3D" parent="Head/playerCam"]
@@ -29,3 +35,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.719864, -0.10095)
 
 [node name="eclectic_male_rigged_texturing_backuip" parent="Head/mesh" instance=ExtResource("3_x3phq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.392443, 0.0890787)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0609564)
+shape = SubResource("BoxShape3D_dbouj")
