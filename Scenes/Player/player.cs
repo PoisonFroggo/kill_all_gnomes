@@ -15,9 +15,10 @@ public partial class player : CharacterBody3D
 	
 	[Export] public float RotationSpeed { get; set; }
 	[Export] public float CameraActualRotationSpeed { get; set; }
-	[Export] public float VerticalRotationLimit { get; set; } = 80; //we want the player to be able to spin when in midair, so this may prove unnecessary in the future
+	[Export] public float VerticalRotationLimit { get; set; } = 90; //we want the player to be able to spin when in midair, so this may prove unnecessary in the future
 
-	private Vector3 targetRotation;
+	private Vector3 camTargetRotation;
+	private Vector3 bodyTargetRotation;
 
 
 	private float _rotationX = 0f;
@@ -69,11 +70,13 @@ public partial class player : CharacterBody3D
 		if (@event is InputEventMouseMotion mouseMotion)
 		{
 			//Debug.WriteLine("mouse input detected");
-			/*targetRotation = new Vector3(
-				Mathf.Clamp((-1 * mouseMotion.Relative.Y * RotationSpeed) + targetRotation.X, -VerticalRotationLimit, VerticalRotationLimit),
-				Mathf.Wrap((-1 * mouseMotion.Relative.X * RotationSpeed) + targetRotation.Y, 0, 360), 
+			camTargetRotation = new Vector3(
+				Mathf.Clamp((-1 * mouseMotion.Relative.Y * RotationSpeed) + camTargetRotation.X, -VerticalRotationLimit, VerticalRotationLimit),
+				//0,
+				Mathf.Wrap((-1 * mouseMotion.Relative.X * RotationSpeed) + camTargetRotation.Y, 0, 360), 
 				0);
-			CameraNode.Rotation = targetRotation;*/
+				Debug.Print(camTargetRotation.ToString());
+			CameraNode.Rotation = camTargetRotation;
 			//rotate the characterbody node on the Y axis when mouse is moved side to side
 			//rotate characterbody node on the X axis when mouse is moved up and down (later change this to the hip bone on the player skeleton)
 		}

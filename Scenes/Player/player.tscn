@@ -14,7 +14,7 @@ size = Vector3(0.426695, 1.70339, 0.331874)
 script = ExtResource("1_8uqkp")
 CameraNode = NodePath("Head/playerCam")
 PlayerModel = NodePath("Head/mesh/eclectic_male_rigged_texturing_backuip")
-RotationSpeed = 3.065
+RotationSpeed = 0.01
 
 [node name="pve_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0861763)
