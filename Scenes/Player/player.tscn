@@ -10,11 +10,16 @@ height = 1.76332
 [sub_resource type="BoxShape3D" id="BoxShape3D_dbouj"]
 size = Vector3(0.426695, 1.70339, 0.331874)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CameraNode", "PlayerModel")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CameraNode", "PlayerModel", "PlayerRoot")]
 script = ExtResource("1_8uqkp")
 CameraNode = NodePath("Head/playerCam")
 PlayerModel = NodePath("Head/mesh/eclectic_male_rigged_texturing_backuip")
-RotationSpeed = 0.01
+PlayerRoot = NodePath(".")
+RotationSpeed = 0.1
+CameraActualRotationSpeed = 20.0
+BodyActualRotationSpeed = 15.0
+RootActualRotationSpeed = 20.0
+VerticalRotationLimit = 100.0
 
 [node name="pve_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0861763)
@@ -36,8 +41,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.719864, -0.10095)
 [node name="eclectic_male_rigged_texturing_backuip" parent="Head/mesh" instance=ExtResource("3_x3phq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.392443, 0.0890787)
 
+[node name="eye_l_2" parent="Head/mesh/eclectic_male_rigged_texturing_backuip/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, -8.51053e-09, 1.49012e-08, 1, -4.84139e-08, -2.37789e-08, 1.15219e-07, 1, -8.9407e-08, 2.86102e-06, -2.68966e-06)
+
+[node name="eye_r_2" parent="Head/mesh/eclectic_male_rigged_texturing_backuip/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 1.39737e-08, -1.49012e-08, 1, -9.79188e-09, 9.73382e-09, 6.46545e-08, 1, -1.49012e-07, 2.86102e-06, -2.07871e-06)
+
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0609564)
 shape = SubResource("BoxShape3D_dbouj")
+
+[editable path="Head/mesh/eclectic_male_rigged_texturing_backuip"]
