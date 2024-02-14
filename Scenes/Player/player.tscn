@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://7gv6q50fuutj"]
+[gd_scene load_steps=4 format=3 uid="uid://bxn21s6t6neg1"]
 
-[ext_resource type="Script" path="res://Scenes/Player/player.cs" id="1_8uqkp"]
-[ext_resource type="PackedScene" uid="uid://7y1jroki8kbu" path="res://Assets/eclectic_male_rigged_game'ready'.tscn" id="3_x3phq"]
+[ext_resource type="PackedScene" uid="uid://ptojty21fryp" path="res://Assets/peen_sledgehammer.tscn" id="2_ouxx8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emkox"]
 radius = 0.160762
@@ -10,16 +9,7 @@ height = 1.76332
 [sub_resource type="BoxShape3D" id="BoxShape3D_dbouj"]
 size = Vector3(0.426695, 1.70339, 0.331874)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CameraNode", "PlayerModel", "PlayerRoot")]
-script = ExtResource("1_8uqkp")
-CameraNode = NodePath("Head/playerCam")
-PlayerModel = NodePath("Head/mesh/eclectic_male_rigged_texturing_backuip")
-PlayerRoot = NodePath(".")
-RotationSpeed = 0.1
-CameraActualRotationSpeed = 20.0
-BodyActualRotationSpeed = 15.0
-RootActualRotationSpeed = 20.0
-VerticalRotationLimit = 100.0
+[node name="Player" type="CharacterBody3D"]
 
 [node name="pve_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0861763)
@@ -29,28 +19,20 @@ shape = SubResource("CapsuleShape3D_emkox")
 
 [node name="playerCam" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.734151, -0.0816544)
-fov = 100.441
+fov = 90.0
 
 [node name="gunRay" type="RayCast3D" parent="Head/playerCam"]
 transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 1.35982e-08, -0.00588065, 0.00674525)
 target_position = Vector3(60, 0, 0)
 
 [node name="mesh" type="Node3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.719864, -0.10095)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38587, 0.283388, -0.304346)
 
-[node name="eclectic_male_rigged_texturing_backuip" parent="Head/mesh" instance=ExtResource("3_x3phq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.392443, 0.0890787)
-
-[node name="eye_l_2" parent="Head/mesh/eclectic_male_rigged_texturing_backuip/Armature/Skeleton3D" index="0"]
-transform = Transform3D(1, 0, -8.51053e-09, 1.49012e-08, 1, -4.84139e-08, -2.37789e-08, 1.15219e-07, 1, -8.9407e-08, 2.86102e-06, -2.68966e-06)
-
-[node name="eye_r_2" parent="Head/mesh/eclectic_male_rigged_texturing_backuip/Armature/Skeleton3D" index="1"]
-transform = Transform3D(1, 0, 1.39737e-08, -1.49012e-08, 1, -9.79188e-09, 9.73382e-09, 6.46545e-08, 1, -1.49012e-07, 2.86102e-06, -2.07871e-06)
+[node name="peen_sledgehammer" parent="Head/mesh" instance=ExtResource("2_ouxx8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0929914, -0.173777, -0.133806)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0609564)
 shape = SubResource("BoxShape3D_dbouj")
-
-[editable path="Head/mesh/eclectic_male_rigged_texturing_backuip"]

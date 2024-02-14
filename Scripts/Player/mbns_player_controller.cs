@@ -1,16 +1,16 @@
 using Godot;
 using System;
-using System.Diagnostics;
 
-public partial class player : CharacterBody3D
+public partial class mbns_player_controller : Node3D
 {
 	[Export] public const float Speed = 5.0f;
-	[Export] public const float JumpVelocity = 4.5f;
+	[Export] public float JumpVelocity { get; set; }
 
 	[Export] public string IdleAnimationName { get; set; } //idle animation
 
 	[Export] public Node3D CameraNode { get; set; }
-	[Export] public Node3D PlayerModel { get; set; }
+	//Only needed if the player has a model
+	//[Export] public Node3D PlayerModel { get; set; }
 	[Export] public Node3D PlayerRoot { get; set; }
 
 	
@@ -20,9 +20,14 @@ public partial class player : CharacterBody3D
 	[Export] public float RootActualRotationSpeed { get; set; }
 	[Export] public float VerticalRotationLimit { get; set; } = 90; //we want the player to be able to spin when in midair, so this may prove unnecessary in the future
 
+	[Export] public RayCast3D RideHeightRay { get; set;}
+	[Export] public RayCast3D GroundHeightRay { get; set;}
 	private Vector3 camTargetRotation;
 	//private Vector3 bodyTargetRotation;
 	private Vector3 rootTargetRotation;
+	private Vector3 Velocity;
+
+	public bool IsOnFloor = true;
 
 
 	private float _rotationX = 0f;
@@ -40,15 +45,31 @@ public partial class player : CharacterBody3D
 	}
 	public override void _PhysicsProcess(double delta)
 	{
+		GD.Print(IsOnFloor);
 		Vector3 velocity = Velocity;
+		GD.Print(Velocity);
+		
+		
+		if (GroundHeightRay.IsColliding()) {
+			IsOnFloor = true;
+		}
+		else {
+			IsOnFloor = false;
+		}
 
-		// Add the gravity.
-		if (!IsOnFloor())
+		// Add the gravity. This still goes when the player is grounded for some reason.
+		if (!IsOnFloor) {
 			velocity.Y -= gravity * (float)delta;
+		}
+		else {
+			velocity.Y = 0;
+		}
 
+		
 		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+		if (Input.IsActionJustPressed("jump") & IsOnFloor)
 			velocity.Y = JumpVelocity;
+
 
 		// Get the input direction and handle the movement/deceleration.
 		Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_forward", "move_backward");
@@ -65,7 +86,7 @@ public partial class player : CharacterBody3D
 		}
 
 		Velocity = velocity;
-		MoveAndSlide();
+		//rigidbody uses apply_impulse. If it moves infinitely use linear_damp to cause the body to lose velocity over time
 
 		//handle camera up/down (x) rotation
 		CameraNode.Rotation = new Vector3(
@@ -105,6 +126,14 @@ public partial class player : CharacterBody3D
 
 		if (@event.IsActionPressed("escape")){
 			ToggleMouseMode();
+		}
+
+		if (@event.IsActionPressed("primary_fire")) {
+
+		}
+
+		if (@event.IsActionPressed("secondary_fire")) {
+			
 		}
 	}
 

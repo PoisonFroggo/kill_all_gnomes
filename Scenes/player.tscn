@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bih6xw72w4y6w"]
+
+[ext_resource type="Script" path="res://Scripts/Player/mbns_player_controller.cs" id="1_njrif"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cy41d"]
+
+[node name="Player" type="Node3D" node_paths=PackedStringArray("CameraNode", "PlayerRoot", "RideHeightRay", "GroundHeightRay")]
+script = ExtResource("1_njrif")
+JumpVelocity = 900.0
+CameraNode = NodePath("PlayerRigidbody/PlayerCam")
+PlayerRoot = NodePath("PlayerRigidbody")
+RotationSpeed = 0.03
+CameraActualRotationSpeed = 20.0
+BodyActualRotationSpeed = 20.0
+RootActualRotationSpeed = 20.0
+RideHeightRay = NodePath("PlayerRigidbody/PlayerCollider/RaycastRideHeight")
+GroundHeightRay = NodePath("PlayerRigidbody/PlayerCollider/RayCastGrounded")
+
+[node name="PlayerRigidbody" type="RigidBody3D" parent="."]
+gravity_scale = 0.0
+
+[node name="PlayerCollider" type="CollisionShape3D" parent="PlayerRigidbody"]
+transform = Transform3D(0.43, 0, 0, 0, 0.43, 0, 0, 0, 0.43, 0, 0, 0)
+shape = SubResource("BoxShape3D_cy41d")
+
+[node name="RayCastGrounded" type="RayCast3D" parent="PlayerRigidbody/PlayerCollider"]
+
+[node name="RaycastRideHeight" type="RayCast3D" parent="PlayerRigidbody/PlayerCollider"]
+target_position = Vector3(0, -0.74, 0)
+
+[node name="PlayerCam" type="Camera3D" parent="PlayerRigidbody"]
